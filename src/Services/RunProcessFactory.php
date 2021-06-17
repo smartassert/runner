@@ -9,11 +9,9 @@ use webignition\BasilPhpUnitResultPrinter\ResultPrinter;
 
 class RunProcessFactory
 {
-    private string $projectRootPath;
-
-    public function __construct(string $projectRootPath)
-    {
-        $this->projectRootPath = $projectRootPath;
+    public function __construct(
+        private string $projectRootPath
+    ) {
     }
 
     public function create(string $path): Process

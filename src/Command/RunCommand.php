@@ -22,12 +22,9 @@ class RunCommand extends Command
 
     private const NAME = 'run';
 
-    private RunProcessFactory $runProcessFactory;
-
-    public function __construct(RunProcessFactory $runProcessFactory)
-    {
-        $this->runProcessFactory = $runProcessFactory;
-
+    public function __construct(
+        private RunProcessFactory $runProcessFactory
+    ) {
         parent::__construct();
     }
 
