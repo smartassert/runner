@@ -46,6 +46,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
+          context: .
+          file: chrome.Dockerfile
           push: true
           tags: ghcr.io/smartassert/chrome-runner:${{ steps.image_tag_name.outputs.value }}
 
