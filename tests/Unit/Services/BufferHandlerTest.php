@@ -21,8 +21,8 @@ class BufferHandlerTest extends AbstractBaseTest
     /**
      * @dataProvider handleDataProvider
      *
-     * @param string[] $lines
-     * @param array<string|null> $expectedOutput
+     * @param string[]           $lines
+     * @param array<null|string> $expectedOutput
      */
     public function testHandle(array $lines, array $expectedOutput)
     {

@@ -85,7 +85,8 @@ class RunCommandTest extends AbstractBaseTest
         $factory
             ->shouldReceive('create')
             ->with($path)
-            ->andReturn($return);
+            ->andReturn($return)
+        ;
 
         return $factory;
     }
@@ -96,43 +97,53 @@ class RunCommandTest extends AbstractBaseTest
 
         $process
             ->shouldReceive('run')
-            ->andReturn(9);
+            ->andReturn(9)
+        ;
 
         $process
             ->shouldReceive('isSuccessful')
-            ->andReturnFalse();
+            ->andReturnFalse()
+        ;
 
         $process
             ->shouldReceive('getCommandLine')
-            ->andReturn('command line');
+            ->andReturn('command line')
+        ;
 
         $process
             ->shouldReceive('getExitCode')
-            ->andReturn(9);
+            ->andReturn(9)
+        ;
 
         $process
             ->shouldReceive('getExitCodeText')
-            ->andReturn('exit code text');
+            ->andReturn('exit code text')
+        ;
 
         $process
             ->shouldReceive('getWorkingDirectory')
-            ->andReturn('working directory');
+            ->andReturn('working directory')
+        ;
 
         $process
             ->shouldReceive('isOutputDisabled')
-            ->andReturnFalse();
+            ->andReturnFalse()
+        ;
 
         $process
             ->shouldReceive('getOutput')
-            ->andReturn('');
+            ->andReturn('')
+        ;
 
         $process
             ->shouldReceive('getErrorOutput')
-            ->andReturn('');
+            ->andReturn('')
+        ;
 
         $process
             ->shouldReceive('mustRun')
-            ->andThrow(new ProcessFailedException($process));
+            ->andThrow(new ProcessFailedException($process))
+        ;
 
         return $process;
     }
