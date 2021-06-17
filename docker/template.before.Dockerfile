@@ -1,5 +1,7 @@
 FROM php:8-cli-buster
 
+LABEL org.opencontainers.image.source="https://github.com/smartassert/runner"
+
 ARG proxy_server_version=0.7
 
 WORKDIR /app
