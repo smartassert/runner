@@ -30,6 +30,6 @@ class BufferHandler
             return true;
         }
 
-        return self::YAML_DOCUMENT_SEPARATOR === substr($buffer, 0, strlen(self::YAML_DOCUMENT_SEPARATOR));
+        return str_starts_with($buffer, self::YAML_DOCUMENT_SEPARATOR);
     }
 }

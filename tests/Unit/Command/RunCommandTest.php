@@ -19,9 +19,7 @@ class RunCommandTest extends AbstractBaseTest
     /**
      * @dataProvider executeFailureDataProvider
      *
-     * @param RunCommand $command
      * @param array<mixed> $input
-     * @param int $expectedExitCode
      */
     public function testExecuteFailure(RunCommand $command, array $input, int $expectedExitCode)
     {
