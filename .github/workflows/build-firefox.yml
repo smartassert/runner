@@ -1,12 +1,18 @@
 name: Build Firefox Image
 
+#on:
+#  push:
+#    branches:
+#      - master
+#  release:
+#    types:
+#      - published
+
 on:
   push:
     branches:
       - master
-  release:
-    types:
-      - published
+  pull_request:
 
 jobs:
   build:
@@ -41,6 +47,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: chrome.Dockerfile
+          file: firefox.Dockerfile
           push: true
           tags: ghcr.io/smartassert/firefox-runner:${{ steps.image_tag_name.outputs.value }}
