@@ -105,12 +105,12 @@ class DockerImageTest extends TestCase
         $statementPassedCount = 0;
 
         foreach ($outputLines as $outputLine) {
-            if (preg_match('/^status: passed/', $outputLine) === 1) {
-                $stepPassedCount++;
+            if (1 === preg_match('/^status: passed/', $outputLine)) {
+                ++$stepPassedCount;
             }
 
-            if (preg_match('/^ {4}status: passed/', $outputLine) === 1) {
-                $statementPassedCount++;
+            if (1 === preg_match('/^ {4}status: passed/', $outputLine)) {
+                ++$statementPassedCount;
             }
         }
 
