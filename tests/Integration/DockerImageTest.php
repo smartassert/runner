@@ -89,6 +89,7 @@ class DockerImageTest extends TestCase
         }
 
         $manifestData = Yaml::parse($output->getContent());
+        $manifestData = is_array($manifestData) ? $manifestData : [];
 
         return SuiteManifest::fromArray($manifestData);
     }
@@ -105,7 +106,7 @@ class DockerImageTest extends TestCase
         $statementPassedCount = 0;
 
         foreach ($outputLines as $outputLine) {
-            if (1 === preg_match('/^status: passed/', $outputLine)) {
+            if (str_starts_with($outputLine, 'status: passed')) {
                 ++$stepPassedCount;
             }
 
