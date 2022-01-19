@@ -1,29 +1,10 @@
 parameters:
-  level: 8
+  level: 9
   paths:
     - bin
     - src
     - tests
   inferPrivatePropertyTypeFromConstructor: true
-  excludes_analyse:
+  excludePaths:
     - '*/tests/build/*'
     - '*/tests/Fixtures/php/*'
-  ignoreErrors:
-    # Return type of 'array' of test data providers
-    -
-      message: '#DataProvider\(\) return type has no value type specified in iterable type array#'
-      path: 'tests'
-
-    # Test methods with intentionally no return type
-    -
-      message: '#::test.+\(\) has no return typehint specified#'
-      path: 'tests'
-
-    # Symfony\Component\Process\Process argument iterable type
-    -
-      message: '#Method .*RunProcessFactory::create\(\) return type .* Symfony\\Component\\Process\\Process#'
-      path: 'src/Services/RunProcessFactory.php'
-
-    -
-      message: '#Method .* (return type|value type) .* Symfony\\Component\\Process\\Process#'
-      path: 'tests/Unit/Command/RunCommandTest.php'

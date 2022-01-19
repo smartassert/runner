@@ -24,7 +24,7 @@ class BufferHandlerTest extends AbstractBaseTest
      * @param string[]           $lines
      * @param array<null|string> $expectedOutput
      */
-    public function testHandle(array $lines, array $expectedOutput)
+    public function testHandle(array $lines, array $expectedOutput): void
     {
         $output = [];
 
@@ -35,6 +35,9 @@ class BufferHandlerTest extends AbstractBaseTest
         self::assertSame($expectedOutput, $output);
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function handleDataProvider(): array
     {
         return [

@@ -22,13 +22,16 @@ class RunProcessFactoryTest extends AbstractBaseTest
     /**
      * @dataProvider createDataProvider
      */
-    public function testCreate(string $path, string $expectedCommand)
+    public function testCreate(string $path, string $expectedCommand): void
     {
         $process = $this->factory->create($path);
 
         self::assertSame($expectedCommand, $process->getCommandLine());
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function createDataProvider(): array
     {
         $root = (string) getcwd();
