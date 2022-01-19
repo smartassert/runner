@@ -82,9 +82,6 @@ class RunCommandTest extends AbstractBaseTest
         $this->assertSame(RunCommand::RETURN_CODE_UNABLE_TO_RUN_PROCESS, $exitCode);
     }
 
-    /**
-     * @param Process<\Generator> $return
-     */
     private function createRunProcessFactory(string $path, Process $return): RunProcessFactory
     {
         $factory = \Mockery::mock(RunProcessFactory::class);
@@ -97,9 +94,6 @@ class RunCommandTest extends AbstractBaseTest
         return $factory;
     }
 
-    /**
-     * @return Process<\Generator>
-     */
     private function createProcess(): Process
     {
         $process = \Mockery::mock(Process::class);
