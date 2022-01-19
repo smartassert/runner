@@ -14,9 +14,6 @@ class RunProcessFactory
     ) {
     }
 
-    /**
-     * @return Process<\Generator>
-     */
     public function create(string $path): Process
     {
         return Process::fromShellCommandline($this->createPhpUnitCommand($path));
