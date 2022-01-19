@@ -1,4 +1,4 @@
-FROM php:8-cli-buster
+FROM php:8.0-cli-buster
 
 LABEL org.opencontainers.image.source="https://github.com/smartassert/runner"
 
