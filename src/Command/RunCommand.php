@@ -11,7 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use webignition\BasilCliRunner\Services\BufferHandler;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
-use webignition\SymfonyConsole\TypedInput\TypedInput;
 
 class RunCommand extends Command
 {
@@ -44,9 +43,8 @@ class RunCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $typedInput = new TypedInput($input);
-
-        $path = trim((string) $typedInput->getStringOption(RunCommand::OPTION_PATH));
+        $path = $input->getOption(RunCommand::OPTION_PATH);
+        $path = trim(is_string($path) ? $path : '');
         if (!is_file($path)) {
             return self::RETURN_CODE_INVALID_PATH;
         }

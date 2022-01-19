@@ -61,8 +61,7 @@
         "symfony/process": "5.4.*",
         "webignition/base-basil-test-case": "^0.42.0",
         "webignition/basil-phpunit-result-printer": "^0.9.0",
-        "webignition/single-command-application-factory": "^0.2.0",
-        "webignition/symfony-console-typed-input": "^0.6.0"
+        "webignition/single-command-application-factory": "^0.2.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.4",
