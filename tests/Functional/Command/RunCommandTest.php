@@ -21,7 +21,7 @@ class RunCommandTest extends TestCase
         $this->command = CommandFactory::createRunCommand((string) getcwd());
     }
 
-    public function testRunFailurePathDoesNotExist()
+    public function testRunFailurePathDoesNotExist(): void
     {
         $input = [
             '--path' => __DIR__ . '/non-existent',

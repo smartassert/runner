@@ -21,7 +21,7 @@ class RunCommandTest extends AbstractBaseTest
      *
      * @param array<mixed> $input
      */
-    public function testExecuteFailure(RunCommand $command, array $input, int $expectedExitCode)
+    public function testExecuteFailure(RunCommand $command, array $input, int $expectedExitCode): void
     {
         $commandTester = new CommandTester($command);
 
@@ -34,6 +34,9 @@ class RunCommandTest extends AbstractBaseTest
         $this->assertSame($expectedExitCode, $exitCode);
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function executeFailureDataProvider(): array
     {
         $root = (string) getcwd();
@@ -51,7 +54,7 @@ class RunCommandTest extends AbstractBaseTest
         ];
     }
 
-    public function testProcessFailedToRun()
+    public function testProcessFailedToRun(): void
     {
         $root = (string) getcwd();
         $path = $root . '/tests/GeneratedTest.php';
@@ -79,6 +82,9 @@ class RunCommandTest extends AbstractBaseTest
         $this->assertSame(RunCommand::RETURN_CODE_UNABLE_TO_RUN_PROCESS, $exitCode);
     }
 
+    /**
+     * @param Process<\Generator> $return
+     */
     private function createRunProcessFactory(string $path, Process $return): RunProcessFactory
     {
         $factory = \Mockery::mock(RunProcessFactory::class);
@@ -91,6 +97,9 @@ class RunCommandTest extends AbstractBaseTest
         return $factory;
     }
 
+    /**
+     * @return Process<\Generator>
+     */
     private function createProcess(): Process
     {
         $process = \Mockery::mock(Process::class);
