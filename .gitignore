@@ -3,3 +3,4 @@
 .php-cs-fixer.cache
 compiler.phar
 *Dockerfile
+composer.lock
