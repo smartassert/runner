@@ -19,12 +19,13 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
-COPY composer.json composer.lock phpunit.run.xml /app/
+COPY composer.json phpunit.run.xml /app/
 COPY bin /app/bin
 COPY src /app/src
 
 RUN composer install --prefer-dist --no-dev \
     && composer clear-cache \
+    && rm composer.json \
     && curl -L https://raw.githubusercontent.com/webignition/tcp-cli-proxy-server/${proxy_server_version}/composer.json --output composer.json \
     && curl -L https://github.com/webignition/tcp-cli-proxy-server/releases/download/${proxy_server_version}/composer-${php_version}.lock --output composer.lock \
     && composer check-platform-reqs --ansi \
