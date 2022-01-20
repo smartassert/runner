@@ -57,11 +57,11 @@
     "require": {
         "php": ">=8",
         "ext-json": "*",
-        "symfony/console": "5.4.*",
-        "symfony/process": "5.4.*",
-        "webignition/base-basil-test-case": "^0.42.0",
-        "webignition/basil-phpunit-result-printer": "^0.9.0",
-        "webignition/single-command-application-factory": "^0.2.0"
+        "symfony/console": "6.0.*",
+        "symfony/process": "6.0.*",
+        "webignition/base-basil-test-case": "^0.43.0",
+        "webignition/basil-phpunit-result-printer": "^0.11.0",
+        "webignition/single-command-application-factory": "^0.5.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.4",
@@ -71,11 +71,11 @@
         "phpstan/phpstan-mockery": "^1.0",
         "phpunit/phpunit": "^9.5",
         "squizlabs/php_codesniffer": "^3.6",
-        "symfony/yaml": "5.4.*",
-        "webignition/basil-compiler-models": "^0.15.0",
-        "webignition/basil-parser": "^0.26.0",
+        "symfony/yaml": "6.0.*",
+        "webignition/basil-compiler-models": "^0.16",
+        "webignition/basil-parser": "^0.26",
         "webignition/object-reflector": "^1.0",
-        "webignition/symfony-panther-webserver-runner": "^0.5.0",
+        "webignition/symfony-panther-webserver-runner": "^0.6.0",
         "webignition/tcp-cli-proxy-client": "^0.12.0",
         "webignition/tcp-cli-proxy-models": "^0.4.0"
     },
