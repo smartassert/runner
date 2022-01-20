@@ -99,17 +99,18 @@ class DockerImageTest extends TestCase
         self::assertSame(0, $output->getExitCode(), $output->getContent());
 
         $content = $output->getContent();
+
         $outputLines = explode("\n", $content);
 
         $stepPassedCount = 0;
         $statementPassedCount = 0;
 
         foreach ($outputLines as $outputLine) {
-            if ('  status: passed' === $outputLine) {
+            if (str_starts_with($outputLine, 'status: passed')) {
                 ++$stepPassedCount;
             }
 
-            if ('      status: passed' === $outputLine) {
+            if (1 === preg_match('/^ {4}status: passed/', $outputLine)) {
                 ++$statementPassedCount;
             }
         }
