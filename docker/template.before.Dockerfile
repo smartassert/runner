@@ -1,6 +1,6 @@
 ARG php_version=8.1
 
-FROM php:8.1-cli-buster
+FROM php:8.1-cli-bullseye
 
 LABEL org.opencontainers.image.source="https://github.com/smartassert/runner"
 
