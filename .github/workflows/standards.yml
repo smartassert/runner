@@ -9,11 +9,20 @@ on:
 jobs:
   php-cs-fixer:
     name: PHP CS Fixer Dry Run
+    strategy:
+      matrix:
+        php: ['8.1']
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+
+      - name: Download dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php }}
+          args: --ignore-platform-req=ext-zip
 
       - name: Run
         env:
