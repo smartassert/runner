@@ -15,6 +15,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
+      - name: Download dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: ${{ matrix.php }}
+          args: --ignore-platform-req=ext-zip
+
       - name: Run
         env:
           NO_TTY: "true"
