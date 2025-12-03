@@ -59,7 +59,6 @@
         "ext-json": "*",
         "symfony/console": "6.0.*",
         "symfony/process": "6.0.*",
-        "webignition/base-basil-test-case": "^2.0",
         "webignition/basil-phpunit-result-printer": "^3.0",
         "webignition/single-command-application-factory": "^0.5.0"
     },
