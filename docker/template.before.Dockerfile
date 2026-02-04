@@ -1,10 +1,10 @@
-ARG php_version=8.1
+ARG php_version=8.4
 
-FROM php:8.1-cli-bullseye
+FROM php:8.4-cli-bullseye
 
 LABEL org.opencontainers.image.source="https://github.com/smartassert/runner"
 
-ARG proxy_server_version=0.8
+ARG proxy_server_version=1.0
 ARG php_version
 
 WORKDIR /app
