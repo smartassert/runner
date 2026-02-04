@@ -71,7 +71,7 @@
         "phpunit/phpunit": "^9.5",
         "squizlabs/php_codesniffer": "^4.0",
         "symfony/yaml": "^6",
-        "webignition/basil-compiler-models": "^3.0",
+        "webignition/basil-compiler-models": "^3.0 || ^6.0",
         "webignition/basil-parser": "^3.0",
         "webignition/object-reflector": "^1.0",
         "webignition/symfony-panther-webserver-runner": "^0.6.0",
