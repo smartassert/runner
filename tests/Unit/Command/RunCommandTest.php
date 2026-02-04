@@ -26,7 +26,7 @@ class RunCommandTest extends AbstractBaseTest
         $commandTester = new CommandTester($command);
 
         PHPMockery::mock(
-            'webignition\\BasilCliRunner\\Command',
+            'webignition\BasilCliRunner\Command',
             'is_file'
         )->andReturnFalse();
 
@@ -63,7 +63,7 @@ class RunCommandTest extends AbstractBaseTest
         ];
 
         PHPMockery::mock(
-            'webignition\\BasilCliRunner\\Command',
+            'webignition\BasilCliRunner\Command',
             'is_file'
         )->andReturnTrue();
 
