@@ -11,8 +11,7 @@ class RunProcessFactory
 {
     public function __construct(
         private string $projectRootPath
-    ) {
-    }
+    ) {}
 
     public function create(string $path): Process
     {
