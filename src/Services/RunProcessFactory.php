@@ -23,10 +23,10 @@ class RunProcessFactory
         $phpUnitExecutablePath = $this->projectRootPath . '/vendor/bin/phpunit';
         $phpUnitConfigurationPath = $this->projectRootPath . '/phpunit.run.xml';
 
-        return $phpUnitExecutablePath .
-            ' -c ' . $phpUnitConfigurationPath .
-            ' --printer="' . ResultPrinter::class . '"' .
-            ' --colors=always' .
-            ' ' . $path;
+        return $phpUnitExecutablePath
+            . ' -c ' . $phpUnitConfigurationPath
+            . ' --printer="' . ResultPrinter::class . '"'
+            . ' --colors=always'
+            . ' ' . $path;
     }
 }
