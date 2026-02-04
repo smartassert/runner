@@ -53,7 +53,7 @@ class RunCommand extends Command
         $bufferHandler = new BufferHandler();
 
         $exitCode = $process->run(function ($type, $buffer) use ($output, $bufferHandler) {
-            if (Process::OUT === $type) {
+            if (Process::OUT === $type && is_string($buffer)) {
                 $handledBuffer = $bufferHandler->handle($buffer);
 
                 if (null !== $handledBuffer) {
