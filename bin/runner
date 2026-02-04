@@ -9,10 +9,22 @@ const VERSION = 'dev-master';
 
 require 'vendor/autoload.php';
 
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\SingleCommandApplication;
 use webignition\BasilCliRunner\Services\CommandFactory;
-use webignition\SingleCommandApplicationFactory\Factory;
 
 $command = CommandFactory::createRunCommand(getcwd());
 
-$application = (new Factory())->create($command, VERSION);
+$application = new SingleCommandApplication();
+$application->setName((string) $command->getName());
+$application->setDefinition($command->getDefinition());
+
+$application
+    ->setVersion(VERSION)
+    ->setCode(function (InputInterface $input, OutputInterface $output) use ($command) {
+        return $command->run($input, $output);
+    })
+;
+
 $application->run();
