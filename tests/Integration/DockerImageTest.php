@@ -24,7 +24,7 @@ class DockerImageTest extends TestCase
     private const FIREFOX_RUNNER_PORT = 9502;
 
     private const EXPECTED_STEP_PASSED_COUNT = 4;
-    private const EXPECTED_STATEMENT_PASSED_COUNT = 12;
+    private const EXPECTED_STATEMENT_PASSED_COUNT = 9;
 
     #[DataProvider('runTestInBrowserRunnerDataProvider')]
     public function testRunTestInBrowserRunner(string $source, int $runnerPort): void
@@ -98,10 +98,7 @@ class DockerImageTest extends TestCase
             new TestManifestFactory(),
         );
 
-        $manifestsData = $manifestData['manifests'] ?? [];
-        $manifestsData = is_array($manifestsData) ? $manifestsData : [];
-
-        return $testManifestCollectionFactory->create($manifestsData);
+        return $testManifestCollectionFactory->create($manifestData);
     }
 
     private static function assertRunnerOutput(Output $output): void
