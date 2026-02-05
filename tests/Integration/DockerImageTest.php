@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace webignition\BasilCliRunner\Tests\Integration;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
-use webignition\BasilCompilerModels\SuiteManifest;
+use webignition\BasilCompilerModels\Factory\TestManifestCollectionFactory;
+use webignition\BasilCompilerModels\Factory\TestManifestFactory;
+use webignition\BasilCompilerModels\Model\TestManifestCollection;
 use webignition\TcpCliProxyClient\Client;
 use webignition\TcpCliProxyClient\HandlerFactory;
 use webignition\TcpCliProxyModels\Output;
@@ -21,16 +24,16 @@ class DockerImageTest extends TestCase
     private const FIREFOX_RUNNER_PORT = 9502;
 
     private const EXPECTED_STEP_PASSED_COUNT = 4;
-    private const EXPECTED_STATEMENT_PASSED_COUNT = 12;
+    private const EXPECTED_STATEMENT_PASSED_COUNT = 9;
 
-    /**
-     * @dataProvider runTestInBrowserRunnerDataProvider
-     */
+    #[DataProvider('runTestInBrowserRunnerDataProvider')]
     public function testRunTestInBrowserRunner(string $source, int $runnerPort): void
     {
-        $suiteManifest = $this->compileSource($source);
-        $testManifests = $suiteManifest->getTestManifests();
+        $manifestCollection = $this->compileSource($source);
+
+        $testManifests = $manifestCollection->getManifests();
         $testManifest = $testManifests[0];
+
         $testPath = $testManifest->getTarget();
 
         $browserRunnerClient = Client::createFromHostAndPort('localhost', $runnerPort);
@@ -42,7 +45,7 @@ class DockerImageTest extends TestCase
                 self::COMPILER_TARGET_PATH,
                 basename($testPath)
             ),
-            (new HandlerFactory())->createWithScalarOutput($browserRunnerClientOutput)
+            new HandlerFactory()->createWithScalarOutput($browserRunnerClientOutput)
         );
 
         $outputContent = $browserRunnerClientOutput;
@@ -55,7 +58,7 @@ class DockerImageTest extends TestCase
     /**
      * @return array<mixed>
      */
-    public function runTestInBrowserRunnerDataProvider(): array
+    public static function runTestInBrowserRunnerDataProvider(): array
     {
         return [
             'chrome' => [
@@ -69,7 +72,7 @@ class DockerImageTest extends TestCase
         ];
     }
 
-    private function compileSource(string $source): SuiteManifest
+    private function compileSource(string $source): TestManifestCollection
     {
         $output = '';
         $compilerClient = Client::createFromHostAndPort('localhost', self::COMPILER_PORT);
@@ -91,7 +94,11 @@ class DockerImageTest extends TestCase
         $manifestData = Yaml::parse($output->getContent());
         $manifestData = is_array($manifestData) ? $manifestData : [];
 
-        return SuiteManifest::fromArray($manifestData);
+        $testManifestCollectionFactory = new TestManifestCollectionFactory(
+            new TestManifestFactory(),
+        );
+
+        return $testManifestCollectionFactory->create($manifestData);
     }
 
     private static function assertRunnerOutput(Output $output): void

@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace webignition\BasilCliRunner\Tests\Unit\Services;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use webignition\BasilCliRunner\Services\BufferHandler;
-use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTest;
+use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTestCase;
 
-class BufferHandlerTest extends AbstractBaseTest
+class BufferHandlerTest extends AbstractBaseTestCase
 {
     private BufferHandler $bufferHandler;
 
@@ -19,11 +20,10 @@ class BufferHandlerTest extends AbstractBaseTest
     }
 
     /**
-     * @dataProvider handleDataProvider
-     *
      * @param string[]           $lines
      * @param array<null|string> $expectedOutput
      */
+    #[DataProvider('handleDataProvider')]
     public function testHandle(array $lines, array $expectedOutput): void
     {
         $output = [];
@@ -38,7 +38,7 @@ class BufferHandlerTest extends AbstractBaseTest
     /**
      * @return array<mixed>
      */
-    public function handleDataProvider(): array
+    public static function handleDataProvider(): array
     {
         return [
             'empty' => [

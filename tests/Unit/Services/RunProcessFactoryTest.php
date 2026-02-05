@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace webignition\BasilCliRunner\Tests\Unit\Services;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
-use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTest;
-use webignition\BasilPhpUnitResultPrinter\ResultPrinter;
+use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTestCase;
 
-class RunProcessFactoryTest extends AbstractBaseTest
+class RunProcessFactoryTest extends AbstractBaseTestCase
 {
     private RunProcessFactory $factory;
 
@@ -19,9 +19,7 @@ class RunProcessFactoryTest extends AbstractBaseTest
         $this->factory = new RunProcessFactory((string) getcwd());
     }
 
-    /**
-     * @dataProvider createDataProvider
-     */
+    #[DataProvider('createDataProvider')]
     public function testCreate(string $path, string $expectedCommand): void
     {
         $process = $this->factory->create($path);
@@ -32,7 +30,7 @@ class RunProcessFactoryTest extends AbstractBaseTest
     /**
      * @return array<mixed>
      */
-    public function createDataProvider(): array
+    public static function createDataProvider(): array
     {
         $root = (string) getcwd();
         $path = 'path/to/target';
@@ -41,10 +39,9 @@ class RunProcessFactoryTest extends AbstractBaseTest
             'default' => [
                 'path' => 'path/to/target',
                 'expectedCommand' => sprintf(
-                    '%s/vendor/bin/phpunit -c %s/phpunit.run.xml --printer="%s" --colors=always %s',
+                    '%s/vendor/bin/phpunit -c %s/phpunit.run.xml --colors=always %s',
                     $root,
                     $root,
-                    ResultPrinter::class,
                     $path
                 ),
             ],

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace webignition\BasilCliRunner\Services;
 
 use Symfony\Component\Process\Process;
-use webignition\BasilPhpUnitResultPrinter\ResultPrinter;
 
 class RunProcessFactory
 {
@@ -25,7 +24,6 @@ class RunProcessFactory
 
         return $phpUnitExecutablePath
             . ' -c ' . $phpUnitConfigurationPath
-            . ' --printer="' . ResultPrinter::class . '"'
             . ' --colors=always'
             . ' ' . $path;
     }

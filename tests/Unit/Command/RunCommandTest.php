@@ -5,22 +5,22 @@ declare(strict_types=1);
 namespace webignition\BasilCliRunner\Tests\Unit\Command;
 
 use phpmock\mockery\PHPMockery;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use webignition\BasilCliRunner\Command\RunCommand;
 use webignition\BasilCliRunner\Services\CommandFactory;
 use webignition\BasilCliRunner\Services\RunProcessFactory;
-use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTest;
+use webignition\BasilCliRunner\Tests\Unit\AbstractBaseTestCase;
 use webignition\ObjectReflector\ObjectReflector;
 
-class RunCommandTest extends AbstractBaseTest
+class RunCommandTest extends AbstractBaseTestCase
 {
     /**
-     * @dataProvider executeFailureDataProvider
-     *
      * @param array<mixed> $input
      */
+    #[DataProvider('executeFailureDataProvider')]
     public function testExecuteFailure(RunCommand $command, array $input, int $expectedExitCode): void
     {
         $commandTester = new CommandTester($command);
@@ -37,7 +37,7 @@ class RunCommandTest extends AbstractBaseTest
     /**
      * @return array<mixed>
      */
-    public function executeFailureDataProvider(): array
+    public static function executeFailureDataProvider(): array
     {
         $root = (string) getcwd();
 
