@@ -1,6 +1,6 @@
 services:
   compiler:
-    image: ghcr.io/smartassert/compiler:2.0
+    image: ghcr.io/smartassert/compiler:6.0
     container_name: test-compiler-container
     volumes:
       - ${COMPILER_LOCAL_SOURCE_PATH}:${COMPILER_SOURCE_PATH}
