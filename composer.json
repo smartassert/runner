@@ -75,7 +75,7 @@
         "webignition/basil-compiler-models": "^6.0",
         "webignition/object-reflector": "^1.0",
         "webignition/symfony-panther-webserver-runner": "^0.6.0",
-        "webignition/tcp-cli-proxy-client": "^0.12.0",
+        "webignition/tcp-cli-proxy-client": "^0.12.0 || ^0.13",
         "webignition/tcp-cli-proxy-models": "^0.4.0"
     },
     "bin": [
