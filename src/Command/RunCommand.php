@@ -41,7 +41,7 @@ class RunCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $path = $input->getOption(RunCommand::OPTION_PATH);
         $path = trim(is_string($path) ? $path : '');
@@ -53,7 +53,7 @@ class RunCommand extends Command
         $bufferHandler = new BufferHandler();
 
         $exitCode = $process->run(function ($type, $buffer) use ($output, $bufferHandler) {
-            if (Process::OUT === $type && is_string($buffer)) {
+            if (Process::OUT === $type) {
                 $handledBuffer = $bufferHandler->handle($buffer);
 
                 if (null !== $handledBuffer) {
