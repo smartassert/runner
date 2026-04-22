@@ -47,4 +47,12 @@ class RunProcessFactoryTest extends AbstractBaseTestCase
             ],
         ];
     }
+
+    public function testProcessHasNoTimeout(): void
+    {
+        $process = $this->factory->create('path/to/target');
+
+        self::assertNull($process->getTimeout());
+        self::assertNull($process->getIdleTimeout());
+    }
 }
