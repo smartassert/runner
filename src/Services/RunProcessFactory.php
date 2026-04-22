@@ -14,11 +14,10 @@ class RunProcessFactory
 
     public function create(string $path): Process
     {
-        $process = Process::fromShellCommandline($this->createPhpUnitCommand($path));
-        $process->setTimeout(null);
-        $process->setIdleTimeout(null);
-
-        return $process;
+        return Process::fromShellCommandline($this->createPhpUnitCommand($path))
+            ->setTimeout(null)
+            ->setIdleTimeout(null)
+        ;
     }
 
     private function createPhpUnitCommand(string $path): string
