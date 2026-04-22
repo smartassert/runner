@@ -4,7 +4,7 @@ FROM php:8.4-cli-bullseye
 
 LABEL org.opencontainers.image.source="https://github.com/smartassert/runner"
 
-ARG proxy_server_version=1.0
+ARG proxy_server_version=1.1
 ARG php_version
 
 WORKDIR /app
