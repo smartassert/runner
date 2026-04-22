@@ -16,7 +16,8 @@ class RunProcessFactory
     {
         return Process::fromShellCommandline($this->createPhpUnitCommand($path))
             ->setTimeout(null)
-            ->setIdleTimeout(null);
+            ->setIdleTimeout(null)
+        ;
     }
 
     private function createPhpUnitCommand(string $path): string
